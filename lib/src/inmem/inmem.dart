@@ -1,5 +1,12 @@
 import 'dart:async';
 import 'package:jaguar_docstore/src/jaguar_docstore_base.dart';
+import 'package:jaguar_docstore/src/inmem/expression.dart';
+
+class Indexed {
+  final String field;
+
+  Indexed(this.field);
+}
 
 class CollectionInMem implements Collection {
   final Map<String, Map<String, dynamic>> _documents = {};
@@ -76,6 +83,10 @@ class CollectionInMem implements Collection {
   }
 
   Future<int> delete(/* TODO */) async {
+    //TODO
+  }
+
+  List<Map<String, dynamic>> _filter(Expression exp) {
     //TODO
   }
 
