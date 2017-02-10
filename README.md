@@ -6,7 +6,16 @@ In-memory document store for Dart
 
 A simple usage example:
 
-TODO
+## TODO
+
+- [ ] Insert
+- [ ] Query equal
+- [ ] Query relational
+- [ ] Query logical
+- [ ] Delete
+- [ ] Update
+- [ ] Sub documents
+- [ ] Arrays
 
 ## Features and bugs
 

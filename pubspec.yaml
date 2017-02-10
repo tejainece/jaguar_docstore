@@ -7,8 +7,9 @@ homepage: https://github.com/Jaguar-dart/jaguar_docstore
 environment:
   sdk: '>=1.8.0 <2.0.0'
 
-#dependencies:
-#  lib_name: any
+dependencies:
+  fixnum: '>=0.9.0 <2.0.0'
+  more: '>=1.3.2 <2.0.0'
 
 dev_dependencies:
   test: '>=0.12.0 <0.13.0'

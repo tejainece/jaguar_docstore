@@ -3,5 +3,32 @@
 
 import 'package:jaguar_docstore/jaguar_docstore.dart';
 
-main() {
+class Player {
+  String id;
+
+  String name;
+
+  String email;
+
+  int hitpoints;
+
+  Map<String, dynamic> toMap() => {
+        'name': name,
+        'email': email,
+        'hitpoints': hitpoints,
+      };
+}
+
+main() async {
+  final Collection players = new CollectionInMem();
+
+  Player pl1 = new Player()
+    ..name = 'player1'
+    ..email = 'player1@example.com'
+    ..hitpoints = 99;
+  final String id = await players.insert(pl1.toMap());
+  print(id);
+
+  final Map<String, dynamic> got = await players.findById(id);
+  print(got);
 }

@@ -8,4 +8,4 @@ library jaguar_docstore;
 
 export 'src/jaguar_docstore_base.dart';
 
-// TODO: Export any libraries intended for clients of this package.
+export 'src/inmem/inmem.dart';
