@@ -7,5 +7,6 @@
 library jaguar_docstore;
 
 export 'src/jaguar_docstore_base.dart';
+export 'src/expression.dart';
 
 export 'src/inmem/inmem.dart';

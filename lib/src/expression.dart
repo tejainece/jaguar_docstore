@@ -28,6 +28,8 @@ class RelationalOperator {
 
   const RelationalOperator(this.id, this.code);
 
+  static const int eqId = 0;
+
   static const RelationalOperator eq = const RelationalOperator(0, '=');
 
   static const RelationalOperator lt = const RelationalOperator(1, '<');
@@ -42,23 +44,37 @@ class RelationalOperator {
 }
 
 class RelationalCondition implements Expression {
+  RelationalCondition(this.name, this.value, {this.op: RelationalOperator.eq});
+
+  RelationalCondition.eq(this.name, this.value): op = RelationalOperator.eq;
+
   String name;
 
   RelationalOperator op;
 
   dynamic value;
+
+  int get length => 1;
 }
 
 class AndExpression implements Expression {
-  List<Expression> expressions;
+  final List<Expression> expressions = [];
+
+  int get length => expressions.length;
 }
 
 class OrExpression implements Expression {
   List<Expression> expressions;
+
+  int get length => 1;
 }
 
 class NotExpression implements Expression {
   Expression expression;
+
+  int get length => 1;
 }
 
-abstract class Expression {}
+abstract class Expression {
+  int get length;
+}

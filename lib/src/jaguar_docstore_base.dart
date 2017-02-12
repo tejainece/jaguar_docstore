@@ -6,29 +6,38 @@ import 'dart:math';
 import 'dart:async';
 import 'dart:convert';
 import 'package:more/char_matcher.dart';
+import 'package:jaguar_docstore/src/expression.dart';
 
 part 'id.dart';
 
 abstract class Collection {
-  Future<Null> ensureIndex(String key);
+  Future<Null> ensureIndex(List<IndexSetting> indexes);
 
   Future<String> insert(Map<String, dynamic> object);
 
   Future<Map<String, dynamic>> findById(String id);
 
-  Future<Map<String, dynamic>> findOne(/* TODO */);
+  Future<Map<String, dynamic>> findOne(Expression exp);
 
-  Future<List<Map<String, dynamic>>> findAll(/* TODO */);
+  Future<List<Map<String, dynamic>>> findAll(Expression exp, {int limit});
 
-  Future<bool> updateById(/* TODO */);
+  Future<bool> updateById(String id);
 
-  Future<bool> updateOne(/* TODO */);
+  Future<bool> updateOne(Expression exp);
 
-  Future<int> update(/* TODO */);
+  Future<int> update(Expression exp);
 
-  Future<bool> deleteById(/* TODO */);
+  Future<bool> deleteById(String id);
 
-  Future<bool> deleteOne(/* TODO */);
+  Future<bool> deleteOne(Expression exp);
 
-  Future<int> delete(/* TODO */);
+  Future<int> delete(Expression exp);
+}
+
+class IndexSetting {
+  final bool ascending;
+
+  final String field;
+
+  const IndexSetting(this.field, {this.ascending: false});
 }

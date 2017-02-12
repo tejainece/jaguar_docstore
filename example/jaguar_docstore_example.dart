@@ -21,14 +21,36 @@ class Player {
 
 main() async {
   final Collection players = new CollectionInMem();
+  players.ensureIndex([new IndexSetting('email')]);
 
-  Player pl1 = new Player()
-    ..name = 'player1'
-    ..email = 'player1@example.com'
-    ..hitpoints = 99;
-  final String id = await players.insert(pl1.toMap());
-  print(id);
+  String plId1;
+  String plId2;
+  {
+    Player pl1 = new Player()
+      ..name = 'player1'
+      ..email = 'player1@example.com'
+      ..hitpoints = 99;
+    plId1 = await players.insert(pl1.toMap());
+    print(plId1);
+  }
 
-  final Map<String, dynamic> got = await players.findById(id);
-  print(got);
+  {
+    Player pl2 = new Player()
+      ..name = 'player2'
+      ..email = 'player2@example.com'
+      ..hitpoints = 50;
+    plId2 = await players.insert(pl2.toMap());
+    print(plId2);
+  }
+
+  {
+    final Map<String, dynamic> got = await players.findById(plId1);
+    print(got);
+  }
+
+  {
+    final Map<String, dynamic> got = await players
+        .findOne(new RelationalCondition('email', 'player2@example.com'));
+    print(got);
+  }
 }
